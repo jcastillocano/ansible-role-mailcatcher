@@ -16,9 +16,9 @@ branches:
 
 env:
   matrix:
-  - INSTANCE=ubuntu-16.04
-  - INSTANCE=ubuntu-14.04
-  - INSTANCE=debian-jessie
+  - INSTANCE=default-ubuntu-1604
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-debian-jessie
 
 before_script:
   - ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --syntax-check
