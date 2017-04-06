@@ -1,24 +1,28 @@
 ---
-language: python
-python: "2.7"
-
-before_install:
-  # Make sure everything's up to date.
-  - sudo apt-get update -qq
+sudo: required
+# docker is required to run tests
+services: docker
 
 install:
-  # Install Ansible.
   - pip install ansible
-
-  # Add ansible.cfg to pick up roles path.
+  - bundle install
   - "echo '[defaults].' > ansible.cfg"
   - "echo 'roles_path = ../' >> ansible.cfg"
 
+branches:
+  only:
+    - develop
+    - master
+
+env:
+  matrix:
+  - INSTANCE=ubuntu-16.04
+  - INSTANCE=ubuntu-14.04
+  - INSTANCE=debian-jessie
+  - INSTANCE=debian-wheezy
+
+before_script:
+  - ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --syntax-check
+
 script:
- - ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --syntax-check
- - "ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --connection=local --sudo"
- - >
-   ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --connection=local --sudo
-   | grep -q 'changed=0.*failed=0'
-   && (echo 'Idempotence test: pass' && exit 0)
-   || (echo 'Idempotence test: fail' && exit 1)
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml kitchen test ${INSTANCE}

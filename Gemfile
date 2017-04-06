@@ -19,3 +19,7 @@ end
 group :vagrant do
   gem 'kitchen-vagrant'
 end
+
+group :docker do
+  gem 'kitchen-docker'
+end
