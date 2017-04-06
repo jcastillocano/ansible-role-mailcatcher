@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jcastillocano/ansible-role-mailcatcher.svg)](https://travis-ci.org/jcastillocano/ansible-role-mailcatcher)
+
 # Mailcatcher
 Ansible role for setting up [Mailcatcher](http://mailcatcher.me).
 
