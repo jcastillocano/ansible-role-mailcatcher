@@ -1,5 +1,5 @@
 # Mailcatcher
-Ansible role for setting up [Mailcatcher](http://mailcatcher.me). 
+Ansible role for setting up [Mailcatcher](http://mailcatcher.me).
 
 ## Requirements
 No external requirements exist to this role.
