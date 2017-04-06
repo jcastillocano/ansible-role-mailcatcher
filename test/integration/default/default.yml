@@ -1,6 +1,6 @@
 ---
 # host to test against
-- hosts: test-kitchen
+- hosts: localhost
   remote_user: root
 
   roles:
