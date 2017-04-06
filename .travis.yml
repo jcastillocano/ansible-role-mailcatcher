@@ -14,14 +14,15 @@ branches:
     - develop
     - master
 
-env:
-  matrix:
-  - INSTANCE=default-ubuntu-1604
-  #- INSTANCE=default-ubuntu-1404
-  #- INSTANCE=default-debian-jessie
+#env:
+#  matrix:
+#  - INSTANCE=default-ubuntu-1604
+#  - INSTANCE=default-ubuntu-1404
+#  - INSTANCE=default-debian-jessie
 
 before_script:
   - ansible-playbook -i test/integration/default/inventory test/integration/default/default.yml --syntax-check
 
 script:
-  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml kitchen test ${INSTANCE}
+  # - KITCHEN_LOCAL_YAML=.kitchen.docker.yml kitchen test ${INSTANCE}
+  - KITCHEN_LOCAL_YAML=.kitchen.docker.yml kitchen test default-ubuntu-1604
